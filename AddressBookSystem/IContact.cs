@@ -12,5 +12,6 @@ namespace AddressBookSystem
             string state, int zipcode, long phoneNumber, string email);
         void ViewContact();
         void EditContact(string input);
+        void DeleteContact(string fName, string lName);
     }
 }

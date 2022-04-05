@@ -114,5 +114,19 @@ namespace AddressBookSystem
             }
             ViewContact();
         }
+        public void DeleteContact(string fName, string lName)
+        {
+            for (int i = 0; i < contactList.Count; i++)
+            {
+                if (contactList[i].firstName == fName && contactList[i].lastName == lName)
+                {
+                    Console.WriteLine("Contact {0} {1} Deleted Successfully from Address Book.", contactList[i].firstName, contactList[i].lastName);
+                    contactList.RemoveAt(i);
+                    ViewContact();
+                }
+                else
+                    Console.WriteLine("Person {0} {1} is not in the List",fName,lName);
+            }
+        }
     }
 }
