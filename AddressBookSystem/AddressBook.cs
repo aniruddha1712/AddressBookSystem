@@ -13,16 +13,9 @@ namespace AddressBookSystem
         {
             contactList = new List<Contact>();
         }
-
-        public void AddContactDetail(string firstName, string lastName, string address, string city,
-            string state, int zipcode, long phoneNumber, string email)
-        {
-            Contact personDetail = new Contact(firstName, lastName, address, city, state, zipcode, phoneNumber, email);
-            contactList.Add(personDetail);
-        }
         public void AddNewContact()
         {
-            Console.WriteLine("Enter your First Name: ");
+            Console.WriteLine("\nEnter your First Name: ");
             string firstName = Console.ReadLine();
             Console.WriteLine("Enter your Last Name: ");
             string lastName = Console.ReadLine();
@@ -39,8 +32,8 @@ namespace AddressBookSystem
             Console.WriteLine("Enter your Email-ID: ");
             string email = Console.ReadLine();
 
-            AddContactDetail(firstName, lastName, address, city, state, zipcode, phoneNumber, email);
-            ViewContact();
+            Contact personDetail = new Contact(firstName, lastName, address, city, state, zipcode, phoneNumber, email);
+            contactList.Add(personDetail);
         }
 
         public void ViewContact()
@@ -59,24 +52,6 @@ namespace AddressBookSystem
                 Console.WriteLine("Email ID: " + contact.email);
                 count++;
             }
-        }
-        public void ViewContact(string f_name)
-        {
-            for (int i = 0; i < contactList.Count; i++)
-            {
-                if (contactList[i].firstName == f_name)
-                {
-                    Console.WriteLine("First Name: " + contactList[i].firstName);
-                    Console.WriteLine("Last Name: " + contactList[i].lastName);
-                    Console.WriteLine("Address: " + contactList[i].address);
-                    Console.WriteLine("City: " + contactList[i].city);
-                    Console.WriteLine("State: " + contactList[i].state);
-                    Console.WriteLine("ZipCode: " + contactList[i].zipcode);
-                    Console.WriteLine("Phone Number: " + contactList[i].phoneNumber);
-                    Console.WriteLine("Email ID: " + contactList[i].email);
-                }
-            }
-
         }
         public void EditContact(string input)
         {
