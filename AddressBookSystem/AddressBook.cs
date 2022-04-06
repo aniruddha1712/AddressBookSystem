@@ -48,7 +48,7 @@ namespace AddressBookSystem
             int count = 1;
             foreach (var contact in contactList)
             {
-                Console.WriteLine("Person {0} Details: ", count);
+                Console.WriteLine("\nPerson {0} Details: ", count);
                 Console.WriteLine("First Name: " + contact.firstName);
                 Console.WriteLine("Last Name: " + contact.lastName);
                 Console.WriteLine("Address: " + contact.address);
@@ -58,6 +58,23 @@ namespace AddressBookSystem
                 Console.WriteLine("Phone Number: " + contact.phoneNumber);
                 Console.WriteLine("Email ID: " + contact.email);
                 count++;
+            }
+        }
+        public void ViewContact(string f_name)
+        {
+            for (int i = 0; i < contactList.Count; i++)
+            {
+                if (contactList[i].firstName == f_name)
+                {
+                    Console.WriteLine("First Name: " + contactList[i].firstName);
+                    Console.WriteLine("Last Name: " + contactList[i].lastName);
+                    Console.WriteLine("Address: " + contactList[i].address);
+                    Console.WriteLine("City: " + contactList[i].city);
+                    Console.WriteLine("State: " + contactList[i].state);
+                    Console.WriteLine("ZipCode: " + contactList[i].zipcode);
+                    Console.WriteLine("Phone Number: " + contactList[i].phoneNumber);
+                    Console.WriteLine("Email ID: " + contactList[i].email);
+                }
             }
 
         }
@@ -109,10 +126,7 @@ namespace AddressBookSystem
                             break;
                     }
                 }
-                else
-                    Console.WriteLine("Person {0} is not in the List!",input);
             }
-            ViewContact();
         }
         public void DeleteContact(string fName, string lName)
         {
@@ -122,10 +136,7 @@ namespace AddressBookSystem
                 {
                     Console.WriteLine("Contact {0} {1} Deleted Successfully from Address Book.", contactList[i].firstName, contactList[i].lastName);
                     contactList.RemoveAt(i);
-                    ViewContact();
                 }
-                else
-                    Console.WriteLine("Person {0} {1} is not in the List",fName,lName);
             }
         }
     }
