@@ -15,25 +15,31 @@ namespace AddressBookSystem
         }
         public void AddNewContact()
         {
-            Console.WriteLine("\nEnter your First Name: ");
-            string firstName = Console.ReadLine();
-            Console.WriteLine("Enter your Last Name: ");
-            string lastName = Console.ReadLine();
-            Console.WriteLine("Enter your Address: ");
-            string address = Console.ReadLine();
-            Console.WriteLine("Enter your City: ");
-            string city = Console.ReadLine();
-            Console.WriteLine("Enter your State: ");
-            string state = Console.ReadLine();
-            Console.WriteLine("Enter your Zipcode: ");
-            int zipcode = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter your Phone Number: ");
-            long phoneNumber = Convert.ToInt64(Console.ReadLine());
-            Console.WriteLine("Enter your Email-ID: ");
-            string email = Console.ReadLine();
+            Console.WriteLine("Enter how many contacts you want to add?");
+            int howMany = Convert.ToInt32(Console.ReadLine());
+            for (int i = 1; i <= howMany; i++)
+            {
 
-            Contact personDetail = new Contact(firstName, lastName, address, city, state, zipcode, phoneNumber, email);
-            contactList.Add(personDetail);
+                Console.WriteLine("\nEnter your First Name: ");
+                string firstName = Console.ReadLine();
+                Console.WriteLine("Enter your Last Name: ");
+                string lastName = Console.ReadLine();
+                Console.WriteLine("Enter your Address: ");
+                string address = Console.ReadLine();
+                Console.WriteLine("Enter your City: ");
+                string city = Console.ReadLine();
+                Console.WriteLine("Enter your State: ");
+                string state = Console.ReadLine();
+                Console.WriteLine("Enter your Zipcode: ");
+                int zipcode = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter your Phone Number: ");
+                long phoneNumber = Convert.ToInt64(Console.ReadLine());
+                Console.WriteLine("Enter your Email-ID: ");
+                string email = Console.ReadLine();
+
+                Contact personDetail = new Contact(firstName, lastName, address, city, state, zipcode, phoneNumber, email);
+                contactList.Add(personDetail);
+            }
         }
 
         public void ViewContact()
@@ -41,7 +47,7 @@ namespace AddressBookSystem
             int count = 1;
             foreach (var contact in contactList)
             {
-                Console.WriteLine("\nPerson {0} Details: ", count);
+                Console.WriteLine("Person {0} Details: ", count);
                 Console.WriteLine("First Name: " + contact.firstName);
                 Console.WriteLine("Last Name: " + contact.lastName);
                 Console.WriteLine("Address: " + contact.address);
@@ -112,6 +118,23 @@ namespace AddressBookSystem
                     Console.WriteLine("Contact {0} {1} Deleted Successfully from Address Book.", contactList[i].firstName, contactList[i].lastName);
                     contactList.RemoveAt(i);
                 }
+            }
+        }
+        public void AddNewAddressBook()
+        {
+            Dictionary<string, List<Contact>> addressBookDict = new Dictionary<string, List<Contact>>();
+            Console.WriteLine("Howmany number of address books you want to add? ");
+            int numberOfBooks = Convert.ToInt32(Console.ReadLine());
+            while (numberOfBooks > 0)
+            {
+                Console.WriteLine("Enter name of the address book:");
+                string addBookName = Console.ReadLine();
+                AddressBook books = new AddressBook();
+                books.AddNewContact();
+                addressBookDict.Add(addBookName, contactList);
+                Console.WriteLine("\n"+addBookName);
+                books.ViewContact();
+                numberOfBooks--;
             }
         }
     }

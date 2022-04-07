@@ -15,7 +15,8 @@ namespace AddressBookSystem
             AddressBook addressBook = new AddressBook();
 
             Console.WriteLine("Please choose an option:");
-            Console.WriteLine("1.View Contact \n2. Add New Contact(s) \n3. Edit Contact \n4: Delete Contact \n5: Exit \n");
+            Console.WriteLine("1. View Contact \n2. Add New Contact(s) \n3. Edit Contact \n4: Delete Contact " +
+                "\n5: Add Multiple Addressbook\n6: Exit\n");
             int option = Convert.ToInt32(Console.ReadLine()); 
             switch (option)
             {
@@ -23,12 +24,7 @@ namespace AddressBookSystem
                     addressBook.ViewContact();
                     break;
                 case 2:
-                    Console.WriteLine("Enter how many contacts you want to add?");
-                    int howMany = int.Parse(Console.ReadLine());
-                    for (int i = 1; i <= howMany; i++)
-                    {
-                        addressBook.AddNewContact();
-                    }
+                    addressBook.AddNewContact();
                     addressBook.ViewContact();
                     break;
                 case 3:
@@ -46,6 +42,10 @@ namespace AddressBookSystem
                     addressBook.ViewContact();
                     break;
                 case 5:
+                    addressBook.AddNewAddressBook();
+                    addressBook.ViewContact(); 
+                    break;
+                case 6:
                     Environment.Exit(0);
                     break;
                 default:

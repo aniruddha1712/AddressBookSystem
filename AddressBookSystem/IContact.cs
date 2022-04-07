@@ -12,5 +12,6 @@ namespace AddressBookSystem
         void ViewContact();
         void EditContact(string input);
         void DeleteContact(string fName, string lName);
+        void AddNewAddressBook();
     }
 }
