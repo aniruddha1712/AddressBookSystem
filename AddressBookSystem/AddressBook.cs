@@ -38,8 +38,17 @@ namespace AddressBookSystem
                 string email = Console.ReadLine();
 
                 Contact personDetail = new Contact(firstName, lastName, address, city, state, zipcode, phoneNumber, email);
-                contactList.Add(personDetail);
+                if (CheckIfAlreadyPresent(firstName, lastName))
+                    Console.WriteLine("Already exist");
+                else
+                {
+                    contactList.Add(personDetail);
+                }
             }
+        }
+        public bool CheckIfAlreadyPresent(string firstName, string lastName) //using lambda for no duplicate entry
+        {
+            return contactList.Any(x => x.firstName == firstName && x.lastName == lastName);
         }
 
         public void ViewContact()
@@ -122,18 +131,27 @@ namespace AddressBookSystem
         }
         public void AddNewAddressBook()
         {
-            Dictionary<string, List<Contact>> addressBookDict = new Dictionary<string, List<Contact>>();
+            Dictionary<string, AddressBook> addressBookDict = new Dictionary<string, AddressBook>();
             Console.WriteLine("Howmany number of address books you want to add? ");
             int numberOfBooks = Convert.ToInt32(Console.ReadLine());
             while (numberOfBooks > 0)
             {
                 Console.WriteLine("Enter name of the address book:");
                 string addBookName = Console.ReadLine();
-                AddressBook books = new AddressBook();
-                books.AddNewContact();
-                addressBookDict.Add(addBookName, contactList);
-                Console.WriteLine("\n"+addBookName);
-                books.ViewContact();
+                if (addressBookDict.ContainsKey(addBookName))
+                {
+                    Console.WriteLine("Address Book Name Already Exists");
+                }
+                else
+                {
+                    AddressBook books = new AddressBook();
+                    books.AddNewContact();
+                    addressBookDict.Add(addBookName, books);
+                }
+                foreach (KeyValuePair<string, AddressBook> item in addressBookDict)
+                {
+                    Console.WriteLine($"key:{item.Key} value:{item.Value}");
+                }
                 numberOfBooks--;
             }
         }
