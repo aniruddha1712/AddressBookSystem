@@ -15,7 +15,7 @@ namespace AddressBookSystem
             contactList = new List<Contact>();
             addressBookDict = new Dictionary<string, List<Contact>>();
         }
-        public void AddNewContact()
+        public List<Contact> AddNewContact()
         {
             Console.WriteLine("Enter how many contacts you want to add?");
             int howMany = Convert.ToInt32(Console.ReadLine());
@@ -47,6 +47,7 @@ namespace AddressBookSystem
                     contactList.Add(personDetail);
                 }
             }
+            return contactList;
         }
         public bool CheckIfAlreadyPresent(string firstName, string lastName) //using lambda for no duplicate entry
         {
@@ -146,8 +147,7 @@ namespace AddressBookSystem
                 else
                 {
                     AddressBook books = new AddressBook();
-                    List<Contact> list = new List<Contact>();
-                    books.AddNewContact();
+                    List<Contact> list = books.AddNewContact();
                     addressBookDict.Add(addBookName, list);
                 }
                 foreach (KeyValuePair<string, List<Contact>> item in addressBookDict)
@@ -197,6 +197,17 @@ namespace AddressBookSystem
                     }
                 }
             }
+        }
+        public void CountByCityOrState()
+        {
+            int count = 0;
+            Console.WriteLine("enter the city or state name");
+            string city = Console.ReadLine();
+            foreach (KeyValuePair<string, List<Contact>> user in addressBookDict)
+            {
+                count += user.Value.Count(x => x.city == city || x.state == city);
+            }
+            Console.WriteLine("No of persons in city " + city + " is " + count);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace AddressBookSystem
 {
     interface IContact
     {
-        void AddNewContact();
+        List<Contact> AddNewContact();
         void ViewContact();
         void EditContact(string input);
         void DeleteContact(string fName, string lName);
