@@ -176,5 +176,27 @@ namespace AddressBookSystem
             if (found == 0)
                 Console.WriteLine("No record found");
         }
+        public void ViewPersonInCityOrState()
+        {
+            Console.WriteLine("enter the city or state name");
+            string city = Console.ReadLine();
+            foreach (KeyValuePair<string, List<Contact>> user in addressBookDict)
+            {
+                foreach (Contact contact in user.Value)
+                {
+                    if (contact.city == city || contact.state == city)
+                    {
+                        Console.WriteLine("FirstName: " + contact.firstName);
+                        Console.WriteLine("LastName: " + contact.lastName);
+                        Console.WriteLine("City: " + contact.city);
+                        Console.WriteLine("State: " + contact.state);
+                        Console.WriteLine("Address: " + contact.address);
+                        Console.WriteLine("zipCode: " + contact.zipcode);
+                        Console.WriteLine("Email: " + contact.email);
+                        Console.WriteLine("PhoneNo: " + contact.phoneNumber);
+                    }
+                }
+            }
+        }
     }
 }
