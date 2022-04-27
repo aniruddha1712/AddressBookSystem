@@ -9,9 +9,11 @@ namespace AddressBookSystem
     class AddressBook : IContact
     {
         List<Contact> contactList;
+        Dictionary<string, List<Contact>> addressBookDict;
         public AddressBook()
         {
             contactList = new List<Contact>();
+            addressBookDict = new Dictionary<string, List<Contact>>();
         }
         public void AddNewContact()
         {
@@ -131,7 +133,6 @@ namespace AddressBookSystem
         }
         public void AddNewAddressBook()
         {
-            Dictionary<string, AddressBook> addressBookDict = new Dictionary<string, AddressBook>();
             Console.WriteLine("Howmany number of address books you want to add? ");
             int numberOfBooks = Convert.ToInt32(Console.ReadLine());
             while (numberOfBooks > 0)
@@ -145,15 +146,35 @@ namespace AddressBookSystem
                 else
                 {
                     AddressBook books = new AddressBook();
+                    List<Contact> list = new List<Contact>();
                     books.AddNewContact();
-                    addressBookDict.Add(addBookName, books);
+                    addressBookDict.Add(addBookName, list);
                 }
-                foreach (KeyValuePair<string, AddressBook> item in addressBookDict)
+                foreach (KeyValuePair<string, List<Contact>> item in addressBookDict)
                 {
                     Console.WriteLine($"key:{item.Key} value:{item.Value}");
                 }
                 numberOfBooks--;
             }
+        }
+        public void SearchPersonInCityOrState()
+        {
+            Console.WriteLine("enter the city or state name");
+            string city = Console.ReadLine();
+            int found = 0;
+            foreach (KeyValuePair<string, List<Contact>> user in addressBookDict)
+            {
+                foreach (Contact contact in user.Value)
+                {
+                    if (contact.city == city || contact.state == city)
+                    {
+                        Console.WriteLine(contact.firstName);
+                        found = 1;
+                    }
+                }
+            }
+            if (found == 0)
+                Console.WriteLine("No record found");
         }
     }
 }
