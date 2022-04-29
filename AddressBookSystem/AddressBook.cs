@@ -157,6 +157,27 @@ namespace AddressBookSystem
                 numberOfBooks--;
             }
         }
+        public void ViewAddressBook()
+        {
+            int count = 1;
+            foreach (KeyValuePair<string, List<Contact>> user in addressBookDict)
+            {
+                Console.WriteLine("\nName of Address Book: " + user.Key);
+                foreach (Contact contact in user.Value)
+                {
+                    Console.Write("\nPerson "+count+" Details:\n");
+                    Console.Write(" FirstName: " + contact.firstName);
+                    Console.Write(" LastName: " + contact.lastName);
+                    Console.Write(" City: " + contact.city);
+                    Console.Write(" State: " + contact.state);
+                    Console.Write(" Address: " + contact.address); 
+                    Console.Write(" zipCode: " + contact.zipcode);
+                    Console.Write(" Email: " + contact.email);
+                    Console.Write(" PhoneNo: " + contact.phoneNumber);
+                    count++;
+                }
+            }
+        }
         public void SearchPersonInCityOrState()
         {
             Console.WriteLine("enter the city or state name");
@@ -208,6 +229,14 @@ namespace AddressBookSystem
                 count += user.Value.Count(x => x.city == city || x.state == city);
             }
             Console.WriteLine("No of persons in city " + city + " is " + count);
+        }
+        public void SortPersonName()
+        {
+            foreach (KeyValuePair<string, List<Contact>> user in addressBookDict)
+            {
+                user.Value.Sort((emp1, emp2) => emp1.firstName.CompareTo(emp2.firstName));
+            }
+            ViewAddressBook();
         }
     }
 }
