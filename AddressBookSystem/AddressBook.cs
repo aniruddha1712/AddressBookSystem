@@ -172,8 +172,8 @@ namespace AddressBookSystem
                     Console.Write(" State: " + contact.state);
                     Console.Write(" Address: " + contact.address); 
                     Console.Write(" zipCode: " + contact.zipcode);
-                    Console.Write(" Email: " + contact.email);
                     Console.Write(" PhoneNo: " + contact.phoneNumber);
+                    Console.Write(" Email: " + contact.email);
                     count++;
                 }
             }
@@ -232,9 +232,37 @@ namespace AddressBookSystem
         }
         public void SortPersonName()
         {
-            foreach (KeyValuePair<string, List<Contact>> user in addressBookDict)
+            Console.WriteLine("Choose option(1-4)\n1: Sort by Name\n2: Sort by City\n3: Sort by State\n4: Sort by Zipcode\n");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
             {
-                user.Value.Sort((emp1, emp2) => emp1.firstName.CompareTo(emp2.firstName));
+                case 1:
+                    foreach (KeyValuePair<string, List<Contact>> user in addressBookDict)
+                    {
+                        user.Value.Sort((emp1, emp2) => emp1.firstName.CompareTo(emp2.firstName));
+                    }
+                    break;
+                case 2:
+                    foreach (KeyValuePair<string, List<Contact>> user in addressBookDict)
+                    {
+                        user.Value.Sort((emp1, emp2) => emp1.city.CompareTo(emp2.city));
+                    }
+                    break;
+                case 3:
+                    foreach (KeyValuePair<string, List<Contact>> user in addressBookDict)
+                    {
+                        user.Value.Sort((emp1, emp2) => emp1.state.CompareTo(emp2.state));
+                    }
+                    break;
+                case 4:
+                    foreach (KeyValuePair<string, List<Contact>> user in addressBookDict)
+                    {
+                        user.Value.Sort((emp1, emp2) => emp1.zipcode.CompareTo(emp2.zipcode));
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Choose between 1-4");
+                    break;
             }
             ViewAddressBook();
         }
