@@ -1,0 +1,6 @@
+﻿Name of AddressBookCollege
+
+Person 1
+ FirstName: Aviral LastName: Kumar City: Raipur State: CG Address: Raipur zipCode: 492001 PhoneNo: 9878786756 Email: aviral@gm.com
+Person 2
+ FirstName: Nikhil LastName: Yadav City: Bhilai State: CG Address: Bhilai zipCode: 490020 PhoneNo: 7856785678 Email: nikhil@gm.com
