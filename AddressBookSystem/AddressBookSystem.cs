@@ -19,7 +19,7 @@ namespace AddressBookSystem
                 Console.WriteLine("Please choose an option:");
                 Console.WriteLine("1: View Contact \n2: Add New Contact(s) \n3: Edit Contact \n4: Delete Contact " +
                     "\n5: Add Multiple Addressbook\n6: Find person in city/state\n7: View person in city/state\n8: Count by city/state\n" +
-                    "9: Sort Contact List\n10: Add new book and save into file\n11: Exit\n");
+                    "9: Sort Contact List\n10: Add new book and save into file\n11: Add new book and save into csv file\n12: Exit\n");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -71,6 +71,12 @@ namespace AddressBookSystem
                         fileIO.ReadFile();
                         break;
                     case 11:
+                        addressBook.AddNewAddressBook();
+                        addressBook.WriteCsvFile();
+                        FileIO csvfile = new FileIO();
+                        csvfile.ReadCsvFile();
+                        break;
+                    case 12:
                         Environment.Exit(0);
                         break;
                     default:

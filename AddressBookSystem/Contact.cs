@@ -8,26 +8,15 @@ namespace AddressBookSystem
 {
     class Contact
     {
-        public string firstName;
-        public string lastName;
-        public string address;
-        public string city;
-        public string state;
-        public int zipcode;
-        public long phoneNumber;
-        public string email;
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string address { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public int zipcode { get; set; }
+        public long phoneNumber { get; set; }
+        public string email { get; set; }
 
-        public Contact(string firstName, string lastName, string address, string city, string state, int zipcode, long phoneNumber, string email)
-        {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.address = address;
-            this.city = city;
-            this.state = state;
-            this.zipcode = zipcode;
-            this.phoneNumber = phoneNumber;
-            this.email = email;
-        }
         public override string ToString()
         {
             return $"firstname:{firstName} lastname:{lastName} address:{address} city:{city} state:{state} zipcode:{zipcode} phone:{phoneNumber} email:{email}";
