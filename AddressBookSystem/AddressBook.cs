@@ -408,5 +408,42 @@ namespace AddressBookSystem
                 connection.Close();
             }
         }
+        public void AddContactToDB(Contact obj)
+        {
+            try
+            {
+                connection = new SqlConnection(connectionstring);
+                SqlCommand command = new SqlCommand("spAddContact", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                command.Parameters.AddWithValue("@FirstName", obj.firstName);
+                command.Parameters.AddWithValue("@LastName", obj.lastName);
+                command.Parameters.AddWithValue("@Address", obj.address);
+                command.Parameters.AddWithValue("@City", obj.city);
+                command.Parameters.AddWithValue("@State", obj.state);
+                command.Parameters.AddWithValue("@Zip", obj.zipcode);
+                command.Parameters.AddWithValue("@PhoneNumber", obj.phoneNumber);
+                command.Parameters.AddWithValue("@Email", obj.email);
+                connection.Open();
+                var result = command.ExecuteNonQuery();
+                if (result != 0)
+                {
+                    Console.WriteLine("Contact details added successfully");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to add Contact details");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }

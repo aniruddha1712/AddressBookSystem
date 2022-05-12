@@ -21,7 +21,7 @@ namespace AddressBookSystem
                     "\n5: Add Multiple Addressbook\n6: Find person in city/state\n7: View person in city/state\n8: Count by city/state\n" +
                     "9: Sort Contact List\n10: Add new book and save into file\n11: Add new book and save into csv file\n" +
                     "12: Add new book and save into json file\n13: Retrieve from Database\n14: Update contact in DB\n15: Get entries Added " +
-                    "in particular DateRange");
+                    "in particular DateRange\n16: Count by City/State\n17: Add new COntact in DB");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -104,12 +104,25 @@ namespace AddressBookSystem
                         break;
                     case 16:
                         string queryState = "select COUNT(*) as StateCount, State from AddressBook group by State";
-                        string queryCity
-                            = "select COUNT(*) as CityCount, City from AddressBook group by City; ";
+                        string queryCity = "select COUNT(*) as CityCount, City from AddressBook group by City; ";
                         Console.WriteLine("Displaying contacts by City");
                         addressBook.GetCityCountDB(queryCity);
                         Console.WriteLine("Displaying contacts by State");
                         addressBook.GetStateCountDB(queryState);
+                        break;
+                    case 17:
+                        Contact addNew = new Contact()
+                        {
+                            firstName = "Mitali",
+                            lastName = "Mane",
+                            city = "Pune",
+                            address = "Pune",
+                            state = "MH",
+                            zipcode = 123456,
+                            phoneNumber = 9876567865,
+                            email = "mm@gmail.com"
+                        };
+                        addressBook.AddContactToDB(addNew);
                         break;
                     case 0:
                         Environment.Exit(0);
