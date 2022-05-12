@@ -16,11 +16,11 @@ namespace AddressBookSystem
 
                 AddressBook addressBook = new AddressBook();
 
-                Console.WriteLine("Please choose an option:");
+                Console.WriteLine("Please choose an option or choose 0 for Exit\n:");
                 Console.WriteLine("1: View Contact \n2: Add New Contact(s) \n3: Edit Contact \n4: Delete Contact " +
                     "\n5: Add Multiple Addressbook\n6: Find person in city/state\n7: View person in city/state\n8: Count by city/state\n" +
                     "9: Sort Contact List\n10: Add new book and save into file\n11: Add new book and save into csv file\n" +
-                    "12: Add new book and save into json file\n13: Exit\n");
+                    "12: Add new book and save into json file\n13: Retrieve from Database");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -84,6 +84,10 @@ namespace AddressBookSystem
                         jsonfile.ReadJsonFile();
                         break;
                     case 13:
+                        string query = "select * from AddressBook";
+                        addressBook.GetEntriesFromDB(query);
+                        break;
+                    case 0:
                         Environment.Exit(0);
                         break;
                     default:

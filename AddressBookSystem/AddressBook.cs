@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +12,8 @@ namespace AddressBookSystem
     {
         List<Contact> contactList;
         Dictionary<string, List<Contact>> addressBookDict;
+        public static string connectionstring = @"Data Source=CG-DTE-STUDENT\SQLEXPRESS;Initial Catalog=AddressBook_serviceDB;Integrated Security=True;";
+        SqlConnection connection = null;
         public AddressBook()
         {
             contactList = new List<Contact>();
@@ -289,6 +293,32 @@ namespace AddressBookSystem
         {
             FileIO file = new FileIO();
             file.WriteInJsonFile(addressBookDict);
+        }
+        //UC 16 - Method to retrieve entries from DB 
+        public void GetEntriesFromDB(string query)
+        {
+            try
+            {
+                DataSet dataSet = new DataSet();
+                using (connection = new SqlConnection(connectionstring))
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    adapter.Fill(dataSet);
+                    foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                    {
+                        Console.WriteLine(dataRow["FirstName"] + ", " + dataRow["LastName"] + ", " + dataRow["Address"] + ", " + dataRow["City"] + ", " + dataRow["State"] + ", " + dataRow["Zip"] + ", " + dataRow["PhoneNumber"] + ", " + dataRow["Email"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }
