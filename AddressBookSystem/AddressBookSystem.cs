@@ -20,7 +20,7 @@ namespace AddressBookSystem
                 Console.WriteLine("1: View Contact \n2: Add New Contact(s) \n3: Edit Contact \n4: Delete Contact " +
                     "\n5: Add Multiple Addressbook\n6: Find person in city/state\n7: View person in city/state\n8: Count by city/state\n" +
                     "9: Sort Contact List\n10: Add new book and save into file\n11: Add new book and save into csv file\n" +
-                    "12: Add new book and save into json file\n13: Retrieve from Database");
+                    "12: Add new book and save into json file\n13: Retrieve from Database\n14: Update contact in DB");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -86,6 +86,16 @@ namespace AddressBookSystem
                     case 13:
                         string query = "select * from AddressBook";
                         addressBook.GetEntriesFromDB(query);
+                        break;
+                    case 14:
+                        Contact contact = new Contact();
+                        Console.WriteLine("Enter first name of contact");
+                        contact.firstName = Console.ReadLine();
+                        Console.WriteLine("Enter new City");
+                        contact.city = Console.ReadLine();
+                        Console.WriteLine("Enter new ZipCode");
+                        contact.zipcode = Convert.ToInt32(Console.ReadLine());
+                        addressBook.UpdateContactInDB(contact);
                         break;
                     case 0:
                         Environment.Exit(0);
