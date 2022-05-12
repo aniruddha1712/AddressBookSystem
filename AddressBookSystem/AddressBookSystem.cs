@@ -20,7 +20,8 @@ namespace AddressBookSystem
                 Console.WriteLine("1: View Contact \n2: Add New Contact(s) \n3: Edit Contact \n4: Delete Contact " +
                     "\n5: Add Multiple Addressbook\n6: Find person in city/state\n7: View person in city/state\n8: Count by city/state\n" +
                     "9: Sort Contact List\n10: Add new book and save into file\n11: Add new book and save into csv file\n" +
-                    "12: Add new book and save into json file\n13: Retrieve from Database\n14: Update contact in DB");
+                    "12: Add new book and save into json file\n13: Retrieve from Database\n14: Update contact in DB\n15: Get entries Added " +
+                    "in particular DateRange");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -96,6 +97,10 @@ namespace AddressBookSystem
                         Console.WriteLine("Enter new ZipCode");
                         contact.zipcode = Convert.ToInt32(Console.ReadLine());
                         addressBook.UpdateContactInDB(contact);
+                        break;
+                    case 15:
+                        string query1 = "select * from AddressBook where Date_Added between cast('2020-02-03' as date) and getdate()";
+                        addressBook.GetEntriesFromDB(query1);
                         break;
                     case 0:
                         Environment.Exit(0);
