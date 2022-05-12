@@ -102,6 +102,15 @@ namespace AddressBookSystem
                         string query1 = "select * from AddressBook where Date_Added between cast('2020-02-03' as date) and getdate()";
                         addressBook.GetEntriesFromDB(query1);
                         break;
+                    case 16:
+                        string queryState = "select COUNT(*) as StateCount, State from AddressBook group by State";
+                        string queryCity
+                            = "select COUNT(*) as CityCount, City from AddressBook group by City; ";
+                        Console.WriteLine("Displaying contacts by City");
+                        addressBook.GetCityCountDB(queryCity);
+                        Console.WriteLine("Displaying contacts by State");
+                        addressBook.GetStateCountDB(queryState);
+                        break;
                     case 0:
                         Environment.Exit(0);
                         break;

@@ -36,7 +36,7 @@ select * from AddressBook where City = 'Bhilai' or State = 'MP';
 
 --UC7 size of addressbook--
 select COUNT(*) as StateCount, State from AddressBook group by State;
-select COUNT(*) as StateCount, City from AddressBook group by City;
+select COUNT(*) as CityCount, City from AddressBook group by City;
 
 --UC8 sort entries by name alphbatically--
 select * from AddressBook order by FirstName;
